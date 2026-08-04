@@ -43,7 +43,8 @@ function ringAnchors(width: number, height: number): Anchor[] {
   const cx = width * 0.5;
   const cy = height * 0.5;
   const radiusX = Math.min(width * 0.42, 620);
-  const radiusY = Math.min(height * 0.38, radiusX * 0.95);
+  // Clamp so the topmost coin clears the fixed glass nav bar overlaying the hero.
+  const radiusY = Math.min(height * 0.38, radiusX * 0.95, cy - 120);
 
   return coins.map((coin) => {
     const angle = ((RING_ANGLES[coin.id] ?? 0) * Math.PI) / 180;
@@ -65,7 +66,8 @@ function bandAnchors(width: number, height: number): Anchor[] {
     const bandSize = isTop ? topCount : coins.length - topCount;
     const cellW = width / bandSize;
     const x = (bandIndex + 0.5) * cellW;
-    const y = isTop ? height * 0.1 : height * 0.9;
+    // Keep clear of the fixed glass nav bar overlaying the hero.
+    const y = isTop ? Math.max(height * 0.12, 110) : height * 0.9;
     return { coin, x, y };
   });
 }

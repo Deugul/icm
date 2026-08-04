@@ -1,47 +1,61 @@
 import Link from "next/link";
 import Image from "next/image";
+import CountdownTimer from "./CountdownTimer";
 
 const links = [
-  { href: "#", label: "Home" },
-  { href: "#markets", label: "Baskets" },
-  { href: "#docs", label: "Docs" },
+  { href: "#", label: "Home", active: true },
+  { href: "#markets", label: "Baskets", active: false },
+  { href: "#apple-card", label: "Apple card", active: false },
+  { href: "#docs", label: "Docs", active: false },
 ];
 
 export default function NavBar() {
   return (
-    <nav className="flex items-center justify-between bg-black px-4 py-4 sm:px-6 sm:py-5 md:px-10">
-      <Link href="/" className="flex items-center gap-2 sm:gap-2.5">
-        <Image
-          src="/icm-logo.png"
-          alt=""
-          width={60}
-          height={60}
-          className="h-[54px] w-[54px] shrink-0 sm:h-[60px] sm:w-[60px]"
-        />
-        <span className="text-base font-semibold tracking-[0.1em] text-white sm:text-lg sm:tracking-[0.15em]">
-          ICM.FUN
-        </span>
-      </Link>
+    <div className="absolute inset-x-4 top-4 z-20 sm:inset-x-8 sm:top-6 md:inset-x-12">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-brand/25 bg-black/35 px-4 py-2.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_0_0_1px_rgba(0,0,0,0.2),0_0_36px_-8px_rgba(113,216,119,0.4),0_20px_40px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl backdrop-saturate-150 sm:px-6 md:px-8">
+        <Link href="/" className="flex items-center gap-2 sm:gap-2.5">
+          <Image
+            src="/icm-logo.png"
+            alt=""
+            width={52}
+            height={52}
+            className="h-10 w-10 shrink-0 sm:h-11 sm:w-11"
+          />
+          <span className="text-base font-semibold tracking-[0.1em] text-white sm:text-lg sm:tracking-[0.15em]">
+            ICM.FUN
+          </span>
+        </Link>
 
-      <div className="hidden items-center gap-10 md:flex">
-        {links.map((link) => (
+        <div className="hidden items-center gap-10 md:flex">
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className={
+                link.active
+                  ? "relative text-sm font-medium text-brand"
+                  : "relative text-sm font-medium text-white/75 transition hover:text-white"
+              }
+            >
+              {link.label}
+              {link.active && (
+                <span className="absolute left-1/2 top-full mt-1.5 h-1 w-1 -translate-x-1/2 rounded-full bg-brand" />
+              )}
+            </a>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3 sm:gap-4">
+          <CountdownTimer className="hidden text-xs font-medium sm:inline-flex sm:items-center sm:gap-1.5" />
           <a
-            key={link.label}
-            href={link.href}
-            className="text-sm font-medium text-white/80 transition hover:text-white"
+            href="#get-started"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-3.5 py-2 text-xs font-semibold text-black transition hover:bg-brand-light sm:px-5 sm:py-2.5 sm:text-sm"
           >
-            {link.label}
+            DAPP
+            <span aria-hidden="true">&rarr;</span>
           </a>
-        ))}
-      </div>
-
-      <a
-        href="#get-started"
-        className="rounded-lg bg-lime-300 px-3.5 py-2 text-xs font-semibold text-black transition hover:bg-lime-200 sm:px-5 sm:py-2.5 sm:text-sm"
-      >
-        <span className="sm:hidden">Connect</span>
-        <span className="hidden sm:inline">Connect Wallet</span>
-      </a>
-    </nav>
+        </div>
+      </nav>
+    </div>
   );
 }
