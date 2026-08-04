@@ -2,6 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import CountdownTimer from "./CountdownTimer";
 
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M18.9 2h3.1l-7.6 8.7L23 22h-6.9l-5.4-6.6L4.4 22H1.3l8.1-9.3L1 2h7l4.9 6 6-6zm-1.2 18h1.9L7.4 4H5.4l12.3 16z" />
+    </svg>
+  );
+}
+
 export default function NavBar() {
   return (
     <div className="absolute inset-x-4 top-4 z-20 sm:inset-x-8 sm:top-6 md:inset-x-12">
@@ -20,15 +28,24 @@ export default function NavBar() {
         </Link>
 
         <div className="flex items-center gap-3 sm:gap-4">
-          <span className="hidden items-center gap-1.5 text-xs font-medium text-white/60 sm:inline-flex">
-            Launching in
-            <CountdownTimer className="inline-flex items-center gap-1.5" />
+          <span className="hidden items-center gap-3 sm:inline-flex">
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-white/60">
+              Launching in
+              <CountdownTimer className="inline-flex items-center gap-1.5" />
+            </span>
+            <a
+              href="#"
+              aria-label="X (Twitter)"
+              className="mx-2 text-white/60 transition hover:text-white sm:mx-3"
+            >
+              <XIcon className="h-4 w-4" />
+            </a>
           </span>
           <a
             href="#get-started"
             className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-3.5 py-2 text-xs font-semibold text-black transition hover:bg-brand-light sm:px-5 sm:py-2.5 sm:text-sm"
           >
-            DAPP
+            Coming Soon
             <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
