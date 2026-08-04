@@ -2,13 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import CountdownTimer from "./CountdownTimer";
 
-const links = [
-  { href: "#", label: "Home", active: true },
-  { href: "#markets", label: "Baskets", active: false },
-  { href: "#apple-card", label: "Apple card", active: false },
-  { href: "#docs", label: "Docs", active: false },
-];
-
 export default function NavBar() {
   return (
     <div className="absolute inset-x-4 top-4 z-20 sm:inset-x-8 sm:top-6 md:inset-x-12">
@@ -26,27 +19,11 @@ export default function NavBar() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-10 md:flex">
-          {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className={
-                link.active
-                  ? "relative text-sm font-medium text-brand"
-                  : "relative text-sm font-medium text-white/75 transition hover:text-white"
-              }
-            >
-              {link.label}
-              {link.active && (
-                <span className="absolute left-1/2 top-full mt-1.5 h-1 w-1 -translate-x-1/2 rounded-full bg-brand" />
-              )}
-            </a>
-          ))}
-        </div>
-
         <div className="flex items-center gap-3 sm:gap-4">
-          <CountdownTimer className="hidden text-xs font-medium sm:inline-flex sm:items-center sm:gap-1.5" />
+          <span className="hidden items-center gap-1.5 text-xs font-medium text-white/60 sm:inline-flex">
+            Launching in
+            <CountdownTimer className="inline-flex items-center gap-1.5" />
+          </span>
           <a
             href="#get-started"
             className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-3.5 py-2 text-xs font-semibold text-black transition hover:bg-brand-light sm:px-5 sm:py-2.5 sm:text-sm"

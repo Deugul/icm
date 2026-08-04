@@ -10,18 +10,23 @@ const CURSOR_FORCE = 0.0011;
 const HOVER_SCALE_RADIUS = 170;
 const HOVER_MAX_SCALE = 1.32;
 const SPRING_STRENGTH = 0.000022;
-const WOBBLE_STRENGTH = 0.000016;
 const POSITION_LERP = 0.35;
 const SCALE_LERP = 0.16;
 const BREATHE_AMPLITUDE = 0.05;
 const BREATHE_SPEED = 0.0016;
+// Gentle bob — the anchor itself drifts on a smooth sine curve, so the
+// spring is always chasing a moving target instead of sitting still.
+const BOUNCE_AMPLITUDE = 11;
+const BOUNCE_SPEED = 0.0013;
+const SWAY_AMPLITUDE = 5;
+const SWAY_SPEED = 0.0009;
 
 const MOBILE_BREAKPOINT = 768;
 
 // Clockwise angle from top (12 o'clock) — used on wider viewports where
 // there's enough side gutter to ring the coins around the headline.
 const RING_ANGLES: Record<string, number> = {
-  microsoft: 25,
+  microsoft: 38,
   tesla: 75,
   meta: 125,
   google: 172,
@@ -153,16 +158,14 @@ export default function CoinField() {
           const anchor = anchorById.get(body.label)!;
           const phase = body.wobblePhase;
 
-          // Spring pulling each coin back toward its resting position.
+          // Spring pulling each coin toward a resting point that itself bobs
+          // up and down — smooth (the target moves continuously, no spikes)
+          // and clearly visible (a real pixel offset, not a tiny force nudge).
+          const bounceY = Math.sin(t * BOUNCE_SPEED + phase) * BOUNCE_AMPLITUDE;
+          const swayX = Math.sin(t * SWAY_SPEED + phase * 1.4) * SWAY_AMPLITUDE;
           Body.applyForce(body, body.position, {
-            x: (anchor.x - body.position.x) * SPRING_STRENGTH * body.mass,
-            y: (anchor.y - body.position.y) * SPRING_STRENGTH * body.mass,
-          });
-
-          // Smooth, continuous drift — no random spikes, so the motion never jitters.
-          Body.applyForce(body, body.position, {
-            x: Math.sin(t * 0.0007 + phase) * WOBBLE_STRENGTH * body.mass,
-            y: Math.cos(t * 0.0009 + phase) * WOBBLE_STRENGTH * body.mass,
+            x: (anchor.x + swayX - body.position.x) * SPRING_STRENGTH * body.mass,
+            y: (anchor.y + bounceY - body.position.y) * SPRING_STRENGTH * body.mass,
           });
 
           if (pointer) {
