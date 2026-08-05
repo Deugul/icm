@@ -15,7 +15,7 @@ export default function Hero() {
         className="object-cover"
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/25" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_45%_38%_at_50%_46%,rgba(0,0,0,0.7),rgba(0,0,0,0)_72%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_20%_at_50%_42%,rgba(0,0,0,0.45),rgba(0,0,0,0)_70%)] sm:bg-[radial-gradient(ellipse_45%_38%_at_50%_46%,rgba(0,0,0,0.7),rgba(0,0,0,0)_72%)]" />
 
       <CoinField />
 

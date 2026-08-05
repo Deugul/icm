@@ -61,24 +61,27 @@ function ringAnchors(width: number, height: number): Anchor[] {
   });
 }
 
-// Two clear bands (top / bottom) — keeps coins away from the full-width
-// headline column on narrow viewports, where a ring would collide with it.
-function bandAnchors(width: number, height: number): Anchor[] {
-  const topCount = Math.ceil(coins.length / 2);
-  return coins.map((coin, i) => {
-    const isTop = i < topCount;
-    const bandIndex = isTop ? i : i - topCount;
-    const bandSize = isTop ? topCount : coins.length - topCount;
-    const cellW = width / bandSize;
-    const x = (bandIndex + 0.5) * cellW;
-    // Keep clear of the fixed glass nav bar overlaying the hero.
-    const y = isTop ? Math.max(height * 0.12, 110) : height * 0.9;
-    return { coin, x, y };
+// Fixed positions (fraction of width/height) matching the mobile reference
+// layout — a loose ring that stays clear of the nav bar up top.
+const MOBILE_POSITIONS: Record<string, { x: number; y: number }> = {
+  nvidia: { x: 0.25, y: 0.28 },
+  microsoft: { x: 0.62, y: 0.25 },
+  tesla: { x: 0.84, y: 0.34 },
+  apple: { x: 0.12, y: 0.55 },
+  meta: { x: 0.87, y: 0.61 },
+  amazon: { x: 0.3, y: 0.77 },
+  google: { x: 0.61, y: 0.77 },
+};
+
+function mobileAnchors(width: number, height: number): Anchor[] {
+  return coins.map((coin) => {
+    const pos = MOBILE_POSITIONS[coin.id] ?? { x: 0.5, y: 0.5 };
+    return { coin, x: pos.x * width, y: pos.y * height };
   });
 }
 
-function getAnchors(width: number, height: number) {
-  return width < MOBILE_BREAKPOINT ? bandAnchors(width, height) : ringAnchors(width, height);
+function getAnchors(width: number, height: number): Anchor[] {
+  return width < MOBILE_BREAKPOINT ? mobileAnchors(width, height) : ringAnchors(width, height);
 }
 
 export default function CoinField() {
