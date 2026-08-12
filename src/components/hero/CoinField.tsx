@@ -67,10 +67,10 @@ const MOBILE_POSITIONS: Record<string, { x: number; y: number }> = {
   nvidia: { x: 0.25, y: 0.28 },
   microsoft: { x: 0.62, y: 0.25 },
   tesla: { x: 0.84, y: 0.34 },
-  apple: { x: 0.12, y: 0.55 },
-  meta: { x: 0.87, y: 0.61 },
-  amazon: { x: 0.3, y: 0.77 },
-  google: { x: 0.61, y: 0.77 },
+  apple: { x: 0.1, y: 0.81 },
+  meta: { x: 0.9, y: 0.81 },
+  amazon: { x: 0.32, y: 0.91 },
+  google: { x: 0.68, y: 0.91 },
 };
 
 function mobileAnchors(width: number, height: number): Anchor[] {
