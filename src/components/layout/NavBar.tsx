@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import CountdownTimer from "./CountdownTimer";
 
 function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -28,24 +27,22 @@ export default function NavBar() {
         </Link>
 
         <div className="flex items-center gap-3 sm:gap-4">
-          <span className="hidden items-center gap-3 sm:inline-flex">
-            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-white/60">
-              Launching in
-              <CountdownTimer className="inline-flex items-center gap-1.5" />
-            </span>
-            <a
-              href="#"
-              aria-label="X (Twitter)"
-              className="mx-2 text-white/60 transition hover:text-white sm:mx-3"
-            >
-              <XIcon className="h-4 w-4" />
-            </a>
-          </span>
           <a
-            href="#get-started"
+            href="https://x.com/icmfun"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            className="hidden text-white/60 transition hover:text-white sm:inline-flex"
+          >
+            <XIcon className="h-4 w-4" />
+          </a>
+          <a
+            href="https://pump.fun/coin/DZchfuc2Jom3m6zovzFNTREH4Tm4zx6mAavHCDLbpump"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-3.5 py-2 text-xs font-semibold text-black transition hover:bg-brand-light sm:px-5 sm:py-2.5 sm:text-sm"
           >
-            Coming Soon
+            BUY $ICM
             <span aria-hidden="true">&rarr;</span>
           </a>
         </div>

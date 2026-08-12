@@ -1,6 +1,6 @@
 import Image from "next/image";
 import CoinField from "./CoinField";
-import CountdownTimer from "@/components/layout/CountdownTimer";
+import ContractAddress from "@/components/layout/ContractAddress";
 import { coins } from "@/lib/coins";
 
 export default function Hero() {
@@ -24,11 +24,27 @@ export default function Hero() {
           Internet Capital Markets
         </h1>
 
-        <div className="mt-8 flex justify-center sm:mt-10">
-          <div className="inline-flex flex-col items-center gap-1.5 rounded-lg border border-brand/25 bg-black/35 px-6 py-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_0_0_1px_rgba(0,0,0,0.2),0_0_36px_-8px_rgba(113,216,119,0.4),0_20px_40px_-15px_rgba(0,0,0,0.7)] backdrop-blur-xl backdrop-saturate-150 sm:px-7 sm:py-3.5">
-            <span className="text-base font-semibold text-white">First Stock Protocol</span>
-            <CountdownTimer className="inline-flex items-center text-lg sm:text-xl" />
+        <div className="mt-8 flex flex-col items-center gap-5 sm:mt-10">
+          <span className="text-2xl font-semibold text-white">First Stock Protocol</span>
+
+          <div className="flex items-center justify-center gap-3 sm:gap-4">
+            <a
+              href="https://icm.zebec.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center whitespace-nowrap rounded-lg bg-brand px-5 py-3 text-xs font-semibold text-black shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_0_0_1px_rgba(0,0,0,0.2),0_0_36px_-8px_rgba(113,216,119,0.4),0_20px_40px_-15px_rgba(0,0,0,0.7)] transition hover:bg-brand-light sm:px-7 sm:py-3.5 sm:text-sm"
+            >
+              ICM | STOCK CARD
+            </a>
+            <a
+              href="#"
+              className="flex items-center justify-center whitespace-nowrap rounded-lg bg-brand px-5 py-3 text-xs font-semibold text-black shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),0_0_0_1px_rgba(0,0,0,0.2),0_0_36px_-8px_rgba(113,216,119,0.4),0_20px_40px_-15px_rgba(0,0,0,0.7)] transition hover:bg-brand-light sm:px-6 sm:py-3.5 sm:text-sm"
+            >
+              BASKETS
+            </a>
           </div>
+
+          <ContractAddress className="w-64 justify-center px-3 py-1.5 text-sm sm:w-72 sm:text-base" />
         </div>
 
         <span className="sr-only">
