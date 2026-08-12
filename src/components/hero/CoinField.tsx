@@ -64,9 +64,9 @@ function ringAnchors(width: number, height: number): Anchor[] {
 // Fixed positions (fraction of width/height) matching the mobile reference
 // layout — a loose ring that stays clear of the nav bar up top.
 const MOBILE_POSITIONS: Record<string, { x: number; y: number }> = {
-  nvidia: { x: 0.25, y: 0.28 },
-  microsoft: { x: 0.62, y: 0.25 },
-  tesla: { x: 0.84, y: 0.34 },
+  nvidia: { x: 0.16, y: 0.325 },
+  microsoft: { x: 0.5, y: 0.295 },
+  tesla: { x: 0.84, y: 0.325 },
   apple: { x: 0.1, y: 0.81 },
   meta: { x: 0.9, y: 0.81 },
   amazon: { x: 0.32, y: 0.91 },
